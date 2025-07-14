@@ -10,6 +10,9 @@ from training.pipelines.training_pipeline import TrainingPipeline
 from api.domain.entities import TrainingParameters
 from api.repositories.model_repository import ModelRepository
 
+from logging import getLogger
+logger = getLogger(__name__)
+
 def main(data_path: str, sheet_name: str = 'O&G Equipment Data'):
     params = TrainingParameters(
         data_path=data_path,
@@ -41,8 +44,8 @@ def main(data_path: str, sheet_name: str = 'O&G Equipment Data'):
     }
     model_repo.save_artifacts(artifacts)
     
-    print("Training completed successfully!")
-    print(f"Average Precision: {metrics['average_precision']:.4f}")
+    logger.info("Training completed successfully!")
+    logger.info(f"Average Precision: {metrics['average_precision']:.4f}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

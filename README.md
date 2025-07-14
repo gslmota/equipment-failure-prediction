@@ -110,28 +110,38 @@ docker compose down
 ```
 
 ---
+Absolutely! Here's the **updated English version** of the **"Running Locally (Without Docker)"** section for your README, reflecting your working setup with `python -m api.main`:
+
+---
 
 ## 💻 Running Locally (Without Docker)
 
-1. Activate your Poetry shell:
+1. **Activate the Poetry virtual environment**:
 
    ```bash
    poetry shell
    ```
 
-2. **Start the API**
+2. **(Optional) Set the API port**:
 
    ```bash
-   uvicorn api.main:app --reload --host 0.0.0.0 --port $API_PORT
+   export API_PORT=8000  # or any available port
    ```
 
-3. **Start the Streamlit app** (in a separate terminal):
+3. **Start the FastAPI application** using Python module execution (to avoid import errors):
+
+   > Make sure you are in the project root directory (`failure-prediction-api/`).
 
    ```bash
-   export API_URL=\"http://localhost:$API_PORT/predict/single\"
+   python -m api.main
+   ```
+
+4. **In a separate terminal**, start the Streamlit dashboard:
+
+   ```bash
+   export API_URL="http://localhost:8000/predict/single"
    streamlit run streamlit_app/app.py
    ```
-
 ---
 
 ## 🐞 Debugging
