@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./training/artifacts:/app/training/artifacts
+      - ./data.xlsx:/app/data.xlsx
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: streamlit_app/Dockerfile
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
+    env_file:
+      - .env
+    environment:
+      API_URL: "http://api:8000/predict/single"
+    restart: unless-stopped
