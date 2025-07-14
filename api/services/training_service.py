@@ -20,7 +20,6 @@ class TrainingService:
         Trains a new model in the background.
         """
         df = self.data_pipeline.load_data(params.data_path, params.sheet_name)
-        logger.info("Colunas carregadas:", df.columns.tolist())
 
         df_tr, df_te = self.data_pipeline.split_data(df)
 

@@ -1,6 +1,14 @@
 from fastapi import FastAPI
 from .routes import health, predict, train
 
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -20,4 +28,4 @@ def run():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(run(), host="0.0.0.0", port=8000)
+    uvicorn.run(run(), host="0.0.0.0", port=8000, log_level="debug")

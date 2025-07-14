@@ -1,25 +1,27 @@
+# api/Dockerfile
+
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Dependências de sistema
-RUN apt-get update && apt-get install -y \
-    libgomp1 \
+# System deps
+RUN apt-get update && apt-get install -y libgomp1 \
   && rm -rf /var/lib/apt/lists/*
 
-# Instalar Poetry
+# Install Poetry
 RUN pip install poetry
 
-# Copiar manifesto de dependências
-COPY pyproject.toml ./
+# Copy project metadata + code (all packages)
+COPY pyproject.toml README.md ./
+COPY api/ ./api/
+COPY streamlit_app/ ./streamlit_app/
+COPY training/ ./training/
 
-# Instalar dependências (vai gerar poetry.lock automaticamente)
+# Install dependencies (will generate poetry.lock in‐image)
 RUN poetry config virtualenvs.create false \
   && poetry install --without dev --no-interaction --no-ansi
 
-# Copiar código da API
-COPY api/ ./api/
-
 EXPOSE 8000
 
+# Start the FastAPI app via your console‐script
 CMD ["poetry", "run", "start-api"]

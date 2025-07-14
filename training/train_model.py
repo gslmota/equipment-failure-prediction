@@ -10,8 +10,9 @@ from training.pipelines.training_pipeline import TrainingPipeline
 from api.domain.entities import TrainingParameters
 from api.repositories.model_repository import ModelRepository
 
-from logging import getLogger
-logger = getLogger(__name__)
+import logging
+
+logger = logging.getLogger(__name__)
 
 def main(data_path: str, sheet_name: str = 'O&G Equipment Data'):
     params = TrainingParameters(
