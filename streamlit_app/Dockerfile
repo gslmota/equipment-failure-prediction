@@ -1,22 +1,20 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
 # Instalar Poetry
 RUN pip install poetry
 
-# Copiar arquivos de dependências
-COPY pyproject.toml poetry.lock ./
+# Copiar manifesto de dependências
+COPY pyproject.toml ./
 
-# Instalar dependências (sem dev)
-RUN poetry config virtualenvs.create false && \
-    poetry install --without dev --no-interaction --no-ansi
+# Instalar dependências (gera poetry.lock internamente)
+RUN poetry config virtualenvs.create false \
+  && poetry install --without dev --no-interaction --no-ansi
 
-# Copiar aplicação Streamlit
-COPY ./streamlit_app /app/streamlit_app
+# Copiar app Streamlit
+COPY streamlit_app/ ./streamlit_app/
 
-# Expor porta
 EXPOSE 8501
 
-# Comando para iniciar o Streamlit
 CMD ["poetry", "run", "streamlit", "run", "streamlit_app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
