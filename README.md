@@ -128,7 +128,7 @@ docker compose down
 3. **Start the Streamlit app** (in a separate terminal):
 
    ```bash
-   export API_URL="http://localhost:$API_PORT/predict/single"
+   export API_URL=\"http://localhost:$API_PORT/predict/single\"
    streamlit run streamlit_app/app.py
    ```
 
@@ -159,7 +159,7 @@ All tests are based on **pytest**.
 Run the full suite:
 
 ```bash
-pytest 
+pytest
 ```
 
 * **Unit tests** live in `tests/unit/`
@@ -195,6 +195,7 @@ pytest tests/unit/services/test_inference_service.py
 5. **Utils** contain helper functions for sequence processing and feature pipelines.
 6. **Streamlit App** consumes the API and visualizes predictions interactively.
 
+---
 
 ## 📚 Further Improvements
 

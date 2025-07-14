@@ -4,7 +4,6 @@ version = "0.1.0"
 description = "API for predicting equipment failure using CatBoost and Streamlit"
 authors = ["Gabriel Mota <gabriel.mota@ufv.br>"]
 license = "MIT"
-readme = "README.md"
 packages = [
     { include = "api/app" },
     { include = "streamlit_app" },
