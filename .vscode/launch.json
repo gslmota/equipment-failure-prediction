@@ -1,5 +1,4 @@
 {
-    // .vscode/launch.json
     "version": "0.2.0",
     "configurations": [
       {
@@ -8,11 +7,11 @@
         "request": "launch",
         "module": "uvicorn",
         "args": [
-          "api.main:run",     // caminho para sua app
-          "--reload",         // auto-reload em mudanças
+          "api.main:run",     
+          "--reload",        
           "--port", "8000"
         ],
-        "jinja": true,         // útil se usar templates
+        "jinja": true,         
         "env": {
           "PYTHONPATH": "${workspaceFolder}"  
         }

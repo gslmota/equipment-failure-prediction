@@ -11,28 +11,23 @@ from api.domain.entities import TrainingParameters
 from api.repositories.model_repository import ModelRepository
 
 def main(data_path: str, sheet_name: str = 'O&G Equipment Data'):
-    # Configurar parâmetros
     params = TrainingParameters(
         data_path=data_path,
         sheet_name=sheet_name
     )
     
-    # Executar pipeline
     model_repo = ModelRepository()
     data_pipeline = DataPipeline()
     training_pipeline = TrainingPipeline()
     
-    # Carregar e processar dados
     df = data_pipeline.load_data(params.data_path, params.sheet_name)
     df_tr, df_te = data_pipeline.split_data(df)
     df_tr, df_te, features, scaler = data_pipeline.full_preprocessing(df_tr, df_te)
-    
-    # Treinar modelo
+
     model, metrics = training_pipeline.execute_training(
         df_tr, df_te, features, params
     )
     
-    # Salvar artefatos
     artifacts = {
         'model': model,
         'scaler': scaler,
