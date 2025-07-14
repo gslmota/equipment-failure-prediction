@@ -1,0 +1,54 @@
+# Bytecode do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Diretórios de virtualenv
+venv/
+env/
+.venv/
+.env/
+
+# Arquivos de log e banco de dados temporários
+*.log
+*.sqlite3
+*.db
+
+# Configurações de IDEs/editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de testes e cobertura
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Build de pacotes
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# pipenv / poetry
+Pipfile.lock
+poetry.lock
+
+# Outros
+*.egg
+*.bak
+*.swp
